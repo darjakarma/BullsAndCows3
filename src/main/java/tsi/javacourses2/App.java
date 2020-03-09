@@ -7,6 +7,7 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.util.Random;
 
 /**
  * JavaFX App
@@ -14,6 +15,7 @@ import java.io.IOException;
 public class App extends Application {
 
     private static Scene scene;
+
 
     @Override
     public void start(Stage stage) throws IOException {
@@ -31,6 +33,11 @@ public class App extends Application {
         FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource(fxml + ".fxml"));//мы читаем файл primary з resources!
         return fxmlLoader.load();
     }
+
+   // private class Random {
+     //   Random rand = new Random();
+       // int randNum =
+    // }
 
     public static void main(String[] args) {
         launch();
