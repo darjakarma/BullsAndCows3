@@ -3,13 +3,16 @@ package tsi.javacourses2;
 import java.io.IOException;
 import java.util.*;
 
+import javafx.beans.binding.Bindings;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.control.Button;
 import javafx.scene.control.Spinner;
 import javafx.scene.control.TableView;
 
 public class PrimaryController {
     private static List<Integer> myNumbers;
+    public Button goButton; //
     private int count;
     public Spinner<Integer> num1;
     public Spinner<Integer> num2;
@@ -18,19 +21,34 @@ public class PrimaryController {
     public TableView<Turn> turnsTable;
 
 
+    public void initialize() {
+        generateRandom();
 
-    public static void  initialize() { //это готовый метод для загаданного 4х значного рандомного числа.
+        goButton.disableProperty().bind(Bindings.createBooleanBinding(
+                () -> {
+                    Set<Integer> tmp = new HashSet<>();
+                    return true;
+                },
+                num1.valueProperty(),
+                num2.valueProperty(),
+                num3.valueProperty(),
+                num4.valueProperty()
+                )
+        );
+    }
+
+
+    public static void generateRandom() { //это готовый метод для загаданного 4х значного рандомного числа.
         Set<Integer> tmp = new LinkedHashSet<>();
         Random rand = new Random();
         while (tmp.size() < 4) {
             int i = rand.nextInt(10); // rand: 3 4 3 3 4 4 4 3 3 3 ... 9 ... 7. Тоесть Set проверяет на уникальность значения
-          //   set: 3 4 9 7
+            //   set: 3 4 9 7
             tmp.add(i);
         }
-         myNumbers = List.copyOf(tmp);
+        myNumbers = List.copyOf(tmp);
         System.out.println(myNumbers);
     }
-
 
 
     public void doTurn() { //этот метод возникает при нажатии на кнопку Go
@@ -44,7 +62,7 @@ public class PrimaryController {
         turn.setNr(count);
         turn.setGuess("" + n1 + n2 + n3 + n4);
 
-        turnsTable.getItems().add(0,turn);// 0 - для того чтобв табличке сортировалось по новому -Go-
+        turnsTable.getItems().add(0, turn);// 0 - для того чтобв табличке сортировалось по новому -Go-
 
         System.out.printf("TURN %d %d %d %d %n", n1, n2, n3, n4);
     }
