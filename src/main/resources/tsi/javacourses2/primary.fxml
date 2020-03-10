@@ -19,7 +19,7 @@
          <Spinner fx:id="num2" initialValue="5" min="0" max="9" prefWidth="65" editable="true"/>
          <Spinner fx:id="num3" initialValue="5" min="0" max="9" prefWidth="65" editable="true"/>
          <Spinner fx:id="num4" initialValue="5" min="0" max="9" prefWidth="65" editable="true"/>
-      <Button  fx:id="goButton" text="Go" onAction="#doTurn"/>
+         <Button  fx:id="goButton" text="Go" onAction="#doTurn"/>
       </HBox>
    </top>
 
